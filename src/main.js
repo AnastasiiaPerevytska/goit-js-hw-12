@@ -19,7 +19,14 @@ form.addEventListener('submit', async event => {
   event.preventDefault();
 
   query = form.elements.query.value.trim();
-  if (!query) return;
+  if (!query) {
+    iziToast.warning({
+      title: 'Warning',
+      message: 'Please fill out this field',
+      position: 'topRight',
+    });
+    return;
+  }
   if (loadBtn.classList.contains('is-active')) {
     loadBtn.classList.remove('is-active');
   }
