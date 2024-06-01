@@ -60,7 +60,10 @@ form.addEventListener('submit', async event => {
     }
     lightbox.refresh();
   } catch (error) {
-    console.log(error);
+    iziToast.error({
+      position: 'topRight',
+      message: 'Error fetching images. Please try again later.'
+    });
   }
 });
 
@@ -90,7 +93,10 @@ loadBtn.addEventListener('click', async () => {
       });
     }
   } catch (error) {
-    console.log(error);
+    iziToast.error({
+      position: 'topRight',
+      message: 'Error fetching images. Please try again later.',
+    });
   }
 });
 
