@@ -15,6 +15,12 @@ let page = 1;
 let totalPage = 1;
 let query = '';
 
+const lightbox = new SimpleLightbox('.gallery a', {
+  navText: ['&#5176;', '&#5171;'],
+  captionsData: 'alt',
+  captionDelay: 250,
+});
+
 form.addEventListener('submit', async event => {
   event.preventDefault();
 
@@ -50,6 +56,7 @@ form.addEventListener('submit', async event => {
     gallery.innerHTML = `${renderGallery(data.hits)}`;
     loader.classList.remove('is-active');
     loadBtn.classList.add('is-active');
+    lightbox.refresh();
 
     if (data.totalHits < 15) {
       loadBtn.classList.remove('is-active');
@@ -58,7 +65,7 @@ form.addEventListener('submit', async event => {
         message: "We're sorry, but you've reached the end of search results.",
       });
     }
-    lightbox.refresh();
+    // lightbox.refresh();
   } catch (error) {
     iziToast.error({
       position: 'topRight',
@@ -98,10 +105,4 @@ loadBtn.addEventListener('click', async () => {
       message: 'Error fetching images. Please try again later.',
     });
   }
-});
-
-const lightbox = new SimpleLightbox('.gallery a', {
-  navText: ['&#5176;', '&#5171;'],
-  captionsData: 'alt',
-  captionDelay: 250,
 });
